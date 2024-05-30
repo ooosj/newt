@@ -100,6 +100,13 @@ input {
   min-height: 480px;
 }
 
+#logo_image{
+  position: absolute;
+  width: 70px;
+  top: 15px;
+  left: 10px;
+}
+
 .form-container {
   position: absolute;
   top: 0;
