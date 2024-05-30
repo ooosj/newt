@@ -230,10 +230,11 @@
 	line-height:px;
 }
 .card_main, .card_left, .card_right, .card_temp_left, .card_temp_right { 
-  background-color: rgba(217, 217, 217, 1);
-  position: absolute;
-  transition: left 0.5s ease, top 0.5s ease;
-}
+    background-color: rgba(217, 217, 217, 1);
+    position: absolute;
+    transition: left 0.5s ease, top 0.5s ease, width 0.5s ease, height 0.5s ease; /* 크기와 위치 변화를 위한 트랜지션 추가 */
+  }
+  
 
 .card_main { 
   width: 989px;

@@ -53,7 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardRight.classList.add("card_temp_right");
     newCardRight.style.left = position["tempRight"].left;
     newCardRight.style.top = position["tempRight"].top;
-    document.body.appendChild(newCardRight);
+    document.body
+      .getElementsByClassName("e2479_2")[0]
+      .appendChild(newCardRight);
 
     // Update references for the next shift
     cardLeft.addEventListener(
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight" && !active) {
+    if (event.code === "KeyA" && !active) {
       active = true;
       shiftCards();
     }
