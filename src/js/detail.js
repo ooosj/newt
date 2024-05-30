@@ -79,3 +79,50 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  let commentButton = document.querySelector(".comment_button");
+  let commentSection = document.querySelector(".comment_section");
+  let cardMain = document.querySelector(".card_main");
+  let e2479_3 = document.querySelector(".e2479_3");
+
+  let isDragging = false;
+  let initialY = 0;
+  let offsetY = 0;
+
+  // 댓글 버튼 클릭 시 댓글 창이 나타나도록
+  commentButton.addEventListener("click", () => {
+    commentSection.classList.toggle("expanded");
+  });
+
+  // 댓글 창을 드래그하여 올리면 마우스를 따라 올라가도록
+  commentSection.addEventListener("mousedown", (event) => {
+    isDragging = true;
+    initialY = event.clientY - offsetY;
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+    updateCommentSectionPosition();
+    commentSection.style.transform = ``;
+    offsetY = initialY = 0;
+    // 댓글 창의 위치를 갱신하여 완전히 펼친 상태인지 확인
+  });
+
+  document.addEventListener("mousemove", (event) => {
+    if (isDragging) {
+      offsetY = event.clientY - initialY;
+      commentSection.style.transform = `translateY(${offsetY}px)`;
+    }
+  });
+
+  // 댓글 창의 위치를 갱신하여 완전히 펼친 상태인지 확인
+  function updateCommentSectionPosition() {
+    let comment_top = commentSection.getBoundingClientRect().top;
+    console.log(comment_top);
+    if (comment_top < 500) {
+      commentSection.classList.add("expanded");
+    } else {
+      commentSection.classList.remove("expanded");
+    }
+  }
+});
