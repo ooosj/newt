@@ -1,19 +1,30 @@
-const routes = [
-    { path: "/", view: ()=>{console.log("메인화면입니다.")} },
-    { path: "/mypage", view: ()=>{console.log("마이페이지입니다.")} }
-  ];
-  
-  const App = async () => {
-    
-    const pageMatches = routes.map(route => {
-      return {
-        route: route,
-        isMatch: window.location.pathname === route.path,
-      };
-    });
-   
-    let match = pageMatches.find(pageMatch => pageMatch.isMatch);
-    console.log(match.route.view());
+import About from "./js/about.js";
+import Home from "./js/home.js";
+
+const $app = document.querySelector(".App");
+
+const routes = {
+  "/": Home,
+  "/about": About,
+};
+
+$app.innerHTML = routes["/"].template();
+
+export const changeUrl = (requestedUrl) => {
+  history.pushState(null, null, requestedUrl);
+  $app.innerHTML = routes[requestedUrl].template();
+};
+
+window.addEventListener("click", (e) => {
+  if (e.target.classList.contains("moveToAboutPageBtn")) {
+    // Home 페이지의 버튼이 클릭된 경우
+    changeUrl("/about");
+  } else if (e.target.classList.contains("moveToHomePageBtn")) {
+    // About 페이지의 버튼이 클릭된 경우
+    changeUrl("/");
   }
-  
-  App();
+});
+
+window.addEventListener("popstate", () => {
+  changeUrl(window.location.pathname);
+});
