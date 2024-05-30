@@ -1,0 +1,108 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 20%;
+}
+
+.nav-left img {
+    width: 50px; /* 로고 이미지 크기를 조정하세요 */
+    height: 50px; /* 로고 이미지 크기를 조정하세요 */
+    margin-right: 10px;
+    
+}
+.navbar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    transition: font-size 0.3s ease-in-out;
+}
+.navbar a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+}
+.navbar a:hover {
+    font-size: 1.2em;
+}
+.navbar a:hover::after {
+    width: 100%;
+}
+.nav-right {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 15%;
+}
+.nav-right input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    width: 300px;
+}
+.nav-right button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.nav-right button:hover {
+    background-color: #f0f0f0;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* placeholder 간의 간격을 늘립니다 */
+    width: 100%;
+    max-width: 1400px; /* 최대 넓이를 늘립니다 */
+    padding: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px; /* placeholder 간의 간격을 늘립니다 */
+    max-width: 1400px; /* 최대 넓이를 늘립니다 */
+    padding: 20px;
+    margin-top: 40px; /* navbar와 겹치지 않도록 위에 여백 추가 */
+    margin-bottom: 100px; /* 아래쪽 간격 조절 */
+}
+.placeholder {
+    background-color: #ccc;
+    height: 300px; /* placeholder의 높이를 늘립니다 */
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+.placeholder:hover {
+    transform: scale(1.1);
+}
