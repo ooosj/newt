@@ -1,7 +1,7 @@
 class Home {
     template() {
       return `
-      <div>Home Page</div>
+      <div id = "a">Home Page</div>
       <button class="moveToAboutPageBtn">Go to About Page</button>
       `;
     }

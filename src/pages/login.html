@@ -8,28 +8,27 @@
 <body>
   <div class="container" id="container">
     <div class="form-container sign-up-container">
-      <form action="#">
+      <form id="login-form">
         <img src = "../images/logo_signup.png" id = "logo_image" style="cursor: pointer;">
         <h1>회원가입</h1>
         <br>
         <br>
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button style="cursor: pointer;">회원가입</button>
+        <input type="email" id="signup-email" placeholder="Email" />
+        <input type="password" id="signup-password" placeholder="Password" />
+        <button id ="sign_up" style="cursor: pointer;">회원가입</button>
       </form>
     </div>
     <div class="form-container sign-in-container">
-      <form action="#">
+      <form id="signup-form">
         <img src = "../images/logo_signin.png" id = "logo_image" style="cursor: pointer;">
         <h1>로그인</h1>
         <br>
         <br>
         <br>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input type="email" id="signin-email" placeholder="Email" />
+        <input type="password" id="signin-password" placeholder="Password" />
         <a href="#">비밀번호를 잊으셨나요?</a>
-        <button style="cursor: pointer;" style="cursor: pointer;">로그인</button>
+        <button id ="sign_in" style="cursor: pointer;" >로그인</button>
       </form>
     </div>
     <div class="overlay-container">
@@ -47,6 +46,6 @@
       </div>
     </div>
   </div>
-  <script src="../js/login.js"></script>
+  <script type="module" src="../js/login.js"></script>
 </body>
 </html>
