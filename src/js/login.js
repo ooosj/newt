@@ -1,4 +1,8 @@
 import { loginEmail, signupEmail } from './firebase.js';
+// import Swal from 'sweetalert2';
+
+// // or via CommonJS
+// const Swal = require('sweetalert2');
 
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -24,6 +28,10 @@ signinForm.addEventListener('click', (e) => {
     console.log(result);
     const user = result.user;
     // loginSuccess(user.email, user.uid);
+    alert('로그인 성공!');
+  }).catch((error) => {
+    console.log(error);
+    alert('로그인 실패!');
   });
 });
 
@@ -34,10 +42,12 @@ signupForm.addEventListener('click', (e) => {
   signupEmail(email, password) //
     .then((result) => {
       const user = result.user;
-      // loginSuccess(user.email, user.uid);
+      alert('회원가입 성공!');
     })
     .catch((error) => console.log(error));
 });
+
+
 
 // const loginSuccess = (email, uid) => {
 //   const login_area = document.getElementById('login-area');

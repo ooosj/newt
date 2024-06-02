@@ -131,6 +131,13 @@ input {
   z-index: 1;
 }
 
+.sign-up-container span{
+  position: relative;
+  left: -70px;
+  margin-bottom: 20px;
+  color:lightcoral;
+}
+
 .container.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
