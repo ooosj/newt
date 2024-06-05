@@ -1,8 +1,6 @@
 import { loginEmail, signupEmail } from './firebase.js';
-// import Swal from 'sweetalert2';
-
-// // or via CommonJS
-// const Swal = require('sweetalert2');
+import { getAuth, updateProfile } from "firebase/auth";
+const auth = getAuth();
 
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -19,7 +17,7 @@ signInButton.addEventListener('click', () => {
 const signinForm = document.getElementById('sign_in'); // 로그인 폼 추가
 const signupForm = document.getElementById('sign_up'); // 회원가입 폼 추가
 
-//Email 로그인, 회원가입 구현
+//로그인 구현
 signinForm.addEventListener('click', (e) => {
   e.preventDefault();
   const email = document.getElementById('signin-email').value; // 이메일 입력값 가져오기
@@ -35,8 +33,10 @@ signinForm.addEventListener('click', (e) => {
   });
 });
 
+// 회원가입 구현
 signupForm.addEventListener('click', (e) => {
   e.preventDefault();
+  const name = document.getElementById('signup-name').value; // 이름 입력값 가져오기
   const email = document.getElementById('signup-email').value; // 이메일 입력값 가져오기
   const password = document.getElementById('signup-password').value; // 비밀번호 입력값 가져오기
   signupEmail(email, password) //
@@ -44,7 +44,10 @@ signupForm.addEventListener('click', (e) => {
       const user = result.user;
       alert('회원가입 성공!');
     })
-    .catch((error) => console.log(error));
+    .catch((error) => {
+      console.log(error);
+      alert('회원가입 실패\n 이미 가입된 이메일이거나, 비밀번호가 너무 짧습니다');
+    });
 });
 
 
