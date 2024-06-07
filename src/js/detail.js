@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardLeft = document.querySelector(".card_left");
   let cardRight = document.querySelector(".card_right");
   let cardTempRight = document.querySelector(".card_temp_right");
-
+  let cardTempLeft = document.querySelector(".card_temp_left");
   const shiftCards = () => {
     // Move cards to their new positions
     cardLeft.classList.replace("card_left", "card_temp_left");
@@ -79,17 +79,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  const backCards = () => {
+    // Move cards to their new positions
+    cardTempLeft.classList.replace("card_temp_left", "card_left");
+    cardLeft.classList.replace("card_left", "card_main");
+    cardMain.classList.replace("card_main", "card_right");
+    cardRight.classList.replace("card_right", "card_temp_right");
+
+    cardLeft.style.left = position["main"].left;
+    cardLeft.style.top = position["main"].top;
+
+    cardMain.style.left = position["right"].left;
+    cardMain.style.top = position["right"].top;
+
+    cardRight.style.left = position["tempRight"].left;
+    cardRight.style.top = position["tempRight"].top;
+
+    cardTempLeft.style.left = position["left"].left;
+    cardTempLeft.style.top = position["left"].top;
+
+    // Create new card element for the new right card
+    const newCardLeft = document.createElement("div");
+    newCardLeft.classList.add("card_temp_left");
+    newCardLeft.style.left = position["tempLeft"].left;
+    newCardLeft.style.top = position["tempLeft"].top;
+    newCardLeft.innerText = num;
+    update();
+    document.body.getElementsByClassName("e2479_2")[0].appendChild(newCardLeft);
+
+    // Update references for the next shift
+    cardLeft.addEventListener(
+      "transitionend",
+      () => {
+        active = false;
+        cardRight.remove();
+        cardRight = cardMain;
+        cardMain = cardLeft;
+        cardLeft = cardTempLeft;
+        cardTempLeft = newCardLeft;
+      },
+      { once: true }
+    );
+    function update() {
+      num = num + 1;
+      return num;
+    }
+  };
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight" && !active) {
       active = true;
       shiftCards();
+    } else if (event.key === "ArrowLeft" && !active) {
+      active = true;
+      backCards();
     }
   });
 });
 document.addEventListener("DOMContentLoaded", () => {
   let commentButton = document.querySelector(".comment_button");
   let commentSection = document.querySelector(".comment_section");
-  let backDiv = document.querySelector(".e2479_2");
 
   let isDragging = false;
   let initialY = 0;
