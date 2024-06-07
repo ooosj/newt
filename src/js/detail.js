@@ -23,13 +23,29 @@ const position = {
 
 let active = false;
 let num = 0;
-let mm = [];
+let pivot = 1;
+let left_temp = [];
+let right_temp = [];
+
+function dataIn() {
+  num = num + 1;
+  return num;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   let cardMain = document.querySelector(".card_main");
   let cardLeft = document.querySelector(".card_left");
   let cardRight = document.querySelector(".card_right");
   let cardTempRight = document.querySelector(".card_temp_right");
   let cardTempLeft = document.querySelector(".card_temp_left");
+
+  // 초기 카드에 값 설정
+  cardTempLeft.innerText = dataIn();
+  cardLeft.innerText = dataIn();
+  cardMain.innerText = dataIn();
+  cardRight.innerText = dataIn();
+  cardTempRight.innerText = dataIn();
+
   const shiftCards = () => {
     // Move cards to their new positions
     cardLeft.classList.replace("card_left", "card_temp_left");
@@ -54,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardRight.classList.add("card_temp_right");
     newCardRight.style.left = position["tempRight"].left;
     newCardRight.style.top = position["tempRight"].top;
-    newCardRight.innerText = num;
-    update();
+    newCardRight.innerText = update();
+
     document.body
       .getElementsByClassName("e2479_2")[0]
       .appendChild(newCardRight);
@@ -65,7 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "transitionend",
       () => {
         active = false;
-        cardLeft.remove();
+        left_temp.push(cardTempLeft.innerText);
+        cardTempLeft.remove();
+        cardTempLeft = cardLeft;
         cardLeft = cardMain;
         cardMain = cardRight;
         cardRight = cardTempRight;
@@ -74,8 +92,15 @@ document.addEventListener("DOMContentLoaded", () => {
       { once: true }
     );
     function update() {
-      num = num + 1;
-      return num;
+      if (right_temp.length === 0) {
+        // 비어있음
+        console.log("r over");
+        let t = dataIn();
+        return t;
+      }
+      console.log(right_temp);
+      let t = right_temp.pop();
+      return t;
     }
   };
 
@@ -103,8 +128,8 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardLeft.classList.add("card_temp_left");
     newCardLeft.style.left = position["tempLeft"].left;
     newCardLeft.style.top = position["tempLeft"].top;
-    newCardLeft.innerText = num;
-    update();
+    newCardLeft.innerText = update();
+
     document.body.getElementsByClassName("e2479_2")[0].appendChild(newCardLeft);
 
     // Update references for the next shift
@@ -112,7 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "transitionend",
       () => {
         active = false;
-        cardRight.remove();
+        // 삭제 전 저장
+        right_temp.push(cardTempRight.innerText);
+        cardTempRight.remove();
+        cardTempRight = cardRight;
         cardRight = cardMain;
         cardMain = cardLeft;
         cardLeft = cardTempLeft;
@@ -121,8 +149,14 @@ document.addEventListener("DOMContentLoaded", () => {
       { once: true }
     );
     function update() {
-      num = num + 1;
-      return num;
+      if (left_temp.length === 0) {
+        // 비어있음
+        console.log("err");
+        return 0;
+      }
+
+      let t = left_temp.pop();
+      return t;
     }
   };
 
