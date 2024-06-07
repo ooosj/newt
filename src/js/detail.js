@@ -81,8 +81,9 @@ document.addEventListener("DOMContentLoaded", () => {
       "transitionend",
       () => {
         active = false;
-        left_temp.push(cardLeft.innerText);
-        cardLeft.remove();
+        left_temp.push(cardTempLeft.innerText);
+        cardTempLeft.remove();
+        cardTempLeft = cardLeft;
         cardLeft = cardMain;
         cardMain = cardRight;
         cardRight = cardTempRight;
@@ -137,8 +138,9 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
         active = false;
         // 삭제 전 저장
-        right_temp.push(cardRight.innerText);
-        cardRight.remove();
+        right_temp.push(cardTempRight.innerText);
+        cardTempRight.remove();
+        cardTempRight = cardRight;
         cardRight = cardMain;
         cardMain = cardLeft;
         cardLeft = cardTempLeft;
