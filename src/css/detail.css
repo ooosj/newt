@@ -43,7 +43,7 @@ html{
     transition: font-size 0.3s ease-in-out;
 }
 
-.navbar a::after {
+.navbar a:not(.w)::after {
     content: "";
     display: block;
     width: 0;
