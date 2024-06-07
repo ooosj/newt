@@ -24,8 +24,9 @@
     </div>
     <div class="nav-right">
         <input type="text" placeholder="검색">
-        <button>로그인</button>
-        <button>회원가입</button>
+        <div id="login-area">
+            <button onClick="location.href='./login.html'">로그인</button>
+        </div>
     </div>
 </div>
 
@@ -34,7 +35,7 @@
 </div>
 
 <!-- main.js를 연결하는 부분 -->
-<script src="../js/main.js"></script>
+<script type="module" src="../js/main.js"></script>
 
 </body>
 </html>

@@ -20,14 +20,18 @@ signinForm.addEventListener('click', (e) => {
   e.preventDefault();
   const email = document.getElementById('signin-email').value; // 이메일 입력값 가져오기
   const password = document.getElementById('signin-password').value; // 비밀번호 입력값 가져오기
-  loginEmail(email, password).then((result) => {
-    console.log(result);
-    const user = result.user;
-    alert(getUserName());
-  }).catch((error) => {
-    console.log(error);
-    alert('로그인 실패!');
-  });
+  loginEmail(email, password)
+    .then((result) => {
+      console.log(result);
+      const username = getUserName();
+      alert("로그인 성공!");
+      window.sessionStorage.setItem('username', username);
+      window.location.href = './main.html';
+    })
+    .catch((error) => {
+      console.log(error);
+      alert('로그인 실패!');
+    });
 });
 
 // 회원가입 구현
