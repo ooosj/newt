@@ -188,6 +188,12 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   let commentButton = document.querySelector(".comment_button");
   let commentSection = document.querySelector(".comment_section");
+  let cardMain = document.querySelector(".card_main");
+  let cardMainCircle = document.querySelector(".card_main_circle");
+
+  let isCardDragging = false;
+  let cardInitialY = 0;
+  let cardOffsetY = 0;
 
   let isDragging = false;
   let initialY = 0;
@@ -199,6 +205,11 @@ document.addEventListener("DOMContentLoaded", () => {
     commentSection.classList.toggle("expanded");
   });
 
+  cardMain.addEventListener("mousedown", (event) => {
+    isCardDragging = true;
+    cardInitialY = event.clientY - cardOffsetY;
+  });
+
   // 댓글 창을 드래그하여 올리면 마우스를 따라 올라가도록
   commentSection.addEventListener("mousedown", (event) => {
     isDragging = true;
@@ -207,18 +218,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.addEventListener("mouseup", () => {
-    isDragging = false;
-    updateCommentSectionPosition();
-    commentSection.style.transform = ``;
-    offsetY = initialY = 0;
+    if (isCardDragging) {
+      cardMainCircle.style.background = `radial-gradient(circle, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0) 100%)`;
+      isCardDragging = false;
+      cardMain.style.transform = "";
+      cardOffsetY = cardInitialY = 0;
+    }
+    if (isDragging) {
+      isDragging = false;
+      updateCommentSectionPosition();
+      commentSection.style.transform = ``;
+      offsetY = initialY = 0;
+    }
+
     // 댓글 창의 위치를 갱신하여 완전히 펼친 상태인지 확인
   });
 
   document.addEventListener("mousemove", (event) => {
     if (isDragging) {
-      offsetY = event.clientY - initialY;
-      commentSection.style.transform = `translateY(${offsetY}px)`;
+      let comment_bottom = commentSection.getBoundingClientRect().bottom;
+      if (isDragging && comment_bottom > 1200) {
+        offsetY = event.clientY - initialY;
+        if (offsetY < -708) offsetY = -708;
+        commentSection.style.transform = `translateY(${offsetY}px)`;
+      }
     }
+    if (isCardDragging) {
+      cardOffsetY = event.clientY - cardInitialY;
+      cardMain.style.transform = `translateY(${cardOffsetY}px)`;
+
+      let topPosition = cardMain.getBoundingClientRect().top;
+      let opacity = Math.max(0, 1 - topPosition / 500); // 카드 위치에 따라 원의 투명도 조정 (예시: 500px 기준)
+      cardMainCircle.style.background = `radial-gradient(circle, rgba(255, 0, 0, ${opacity}) 0%, rgba(255, 0, 0, 0) 100%)`;
+    }
+  });
+
+  commentSection.addEventListener("dblclick", () => {
+    commentSection.classList.toggle("expanded");
   });
 
   // 댓글 창의 위치를 갱신하여 완전히 펼친 상태인지 확인
