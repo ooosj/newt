@@ -83,6 +83,7 @@ body {
     border-radius: 5px;
     border: 1px solid #ddd;
     background-color: white;
+    color: black;
     cursor: pointer;
     margin-left: 5px;
     font-family: Arial, sans-serif; /* 동일한 글꼴 스타일 적용 */
