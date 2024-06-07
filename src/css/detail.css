@@ -11,228 +11,89 @@ html{
 	height:1080px;
 	position:absolute;
 }
-.e2479_3 { 
-	box-shadow:0px 1px 0px rgba(0, 0, 0, 0.07999999821186066);
-	background-color:rgba(255, 255, 255, 1);
-	width:1920px;
-	height:62px;
-	position:absolute;
-	left:0px;
-	top:0px;
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
 }
-.e2479_4 { 
-	width:1320px;
-	height:62px;
-	position:absolute;
-	left:300px;
-	top:0px;
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 20%;
 }
-.e2479_5 { 
-	color:rgba(53.00000064074993, 53.00000064074993, 53.00000064074993, 1);
-	width:39.220001220703125px;
-	height:17.25px;
-	position:absolute;
-	left:190px;
-	top:22.3799991607666px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:15px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
+
+.nav-left img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
 }
-.e2479_6 { 
-	color:rgba(126.00000008940697, 126.00000008940697, 126.00000008940697, 1);
-	width:40.060001373291016px;
-	height:17.25px;
-	position:absolute;
-	left:253.02000427246094px;
-	top:22.3799991607666px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:15px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
+
+.navbar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    transition: font-size 0.3s ease-in-out;
 }
-.e2479_7 { 
-	color:rgba(126.00000008940697, 126.00000008940697, 126.00000008940697, 1);
-	width:33.060001373291016px;
-	height:17.25px;
-	position:absolute;
-	left:316.8800048828125px;
-	top:22.3799991607666px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:15px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
+
+.navbar a::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: black;
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
 }
-.e2479_8 { 
-	color:rgba(126.00000008940697, 126.00000008940697, 126.00000008940697, 1);
-	width:58.619998931884766px;
-	height:17.25px;
-	position:absolute;
-	left:363px;
-	top:22px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:15px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
+
+.navbar a:hover {
+    font-size: 1.2em;
 }
-.e2479_9 { 
-	color:rgba(126.00000008940697, 126.00000008940697, 126.00000008940697, 1);
-	width:58.619998931884766px;
-	height:17.25px;
-	position:absolute;
-	left:431px;
-	top:22px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:15px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
+
+.navbar a:hover::after {
+    width: 100%;
 }
-.e2479_10 { 
-	color:rgba(126.00000008940697, 126.00000008940697, 126.00000008940697, 1);
-	width:58.619998931884766px;
-	height:17.25px;
-	position:absolute;
-	left:510px;
-	top:22px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:15px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 15%;
 }
-.e2479_11 { 
-	background-color:rgba(245.00000059604645, 245.00000059604645, 247.00000047683716, 1);
-	width:300px;
-	height:38px;
-	position:absolute;
-	left:869.6300048828125px;
-	top:12px;
-	border-top-left-radius:2px;
-	border-top-right-radius:2px;
-	border-bottom-left-radius:2px;
-	border-bottom-right-radius:2px;
+
+.nav-right input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    width: 300px;
 }
-.e2479_12 { 
-	width:300px;
-	height:38px;
-	position:absolute;
-	left:0px;
-	top:0px;
+
+.nav-right button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin-left: 5px;
 }
-.e2479_13 { 
-	width:16px;
-	height:16px;
-	position:absolute;
-	left:10px;
-	top:10px;
+
+.nav-right button:hover {
+    background-color: #f0f0f0;
 }
-.e2479_14 { 
-	width:14.625005722045898px;
-	height:14.625px;
-	position:absolute;
-	left:0.6875px;
-	top:0.6875px;
-}
-.e2479_15 { 
-	width:14.625005722045898px;
-	height:14.625px;
-	position:absolute;
-	left:0px;
-	top:0px;
-}
-.e2479_16 { 
-	width:14.625005722045898px;
-	height:14.625px;
-	position:absolute;
-	left:0px;
-	top:0px;
-}
-.e2479_17 { 
-	width:14.625005722045898px;
-	height:14.625px;
-	position:absolute;
-	left:0px;
-	top:0px;
-}
-.e2479_18 { 
-	background-color:rgba(186.0000041127205, 186.0000041127205, 195.0000035762787, 0.7599999904632568);
-	width:14.625005722045898px;
-	height:14.625px;
-	position:absolute;
-	left:0px;
-	top:0px;
-}
-.e2479_19 { 
-	width:254px;
-	height:24px;
-	position:absolute;
-	left:36px;
-	top:6.5px;
-}
-.e2479_20 { 
-	width:254px;
-	height:16px;
-	position:absolute;
-	left:0px;
-	top:3px;
-}
-.e2479_21 { 
-	color:rgba(116.00000068545341, 116.00000068545341, 123.0000002682209, 1);
-	width:247.35000610351562px;
-	height:16px;
-	position:absolute;
-	left:0px;
-	top:0px;
-	font-family:Apple SD Gothic Neo;
-	text-align:left;
-	font-size:14px;
-	letter-spacing:-0.30000001192092896;
-}
-.e2479_22 { 
-	color:rgba(116.00000068545341, 116.00000068545341, 123.0000002682209, 1);
-	width:33.060001373291016px;
-	height:16.100000381469727px;
-	position:absolute;
-	left:1189.6300048828125px;
-	top:22.899999618530273px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:14px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
-}
-.e2479_23 { 
-	border:1px solid rgba(116.00000068545341, 116.00000068545341, 123.0000002682209, 1);
-}
-.e2479_23 { 
-	width:77.5199966430664px;
-	height:32px;
-	position:absolute;
-	left:1242.47998046875px;
-	top:15px;
-	border-top-left-radius:6px;
-	border-top-right-radius:6px;
-	border-bottom-left-radius:6px;
-	border-bottom-right-radius:6px;
-}
-.e2479_24 { 
-	color:rgba(53.00000064074993, 53.00000064074993, 53.00000064074993, 1);
-	width:47.720001220703125px;
-	height:20px;
-	position:absolute;
-	left:15px;
-	top:6px;
-	font-family:Apple SD Gothic Neo;
-	text-align:center;
-	font-size:14px;
-	letter-spacing:-0.30000001192092896;
-	line-height:px;
-}
+
 .card_main, .card_left, .card_right, .card_temp_left, .card_temp_right { 
     background-color: rgba(217, 217, 217, 1);
     position: absolute;
@@ -329,3 +190,4 @@ html{
     width: 48px; /* 아이콘 이미지 크기 */
     height: 48px;
 }
+
