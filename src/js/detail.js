@@ -22,6 +22,7 @@ const position = {
 };
 
 let active = false;
+let active_com = false;
 let num = 0;
 let pivot = 1;
 let left_temp = [];
@@ -94,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function update() {
       if (right_temp.length === 0) {
         // 비어있음
-        console.log("r over");
         let t = dataIn();
         return t;
       }
@@ -161,10 +161,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.addEventListener("keydown", (event) => {
+    if (active_com) return;
     if (event.key === "ArrowRight" && !active) {
       active = true;
       shiftCards();
-    } else if (event.key === "ArrowLeft" && !active) {
+    } else if (event.key === "ArrowLeft" && !active && left_temp.length !== 0) {
       active = true;
       backCards();
     }
@@ -180,12 +181,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 댓글 버튼 클릭 시 댓글 창이 나타나도록
   commentButton.addEventListener("click", () => {
+    active_com = true;
     commentSection.classList.toggle("expanded");
   });
 
   // 댓글 창을 드래그하여 올리면 마우스를 따라 올라가도록
   commentSection.addEventListener("mousedown", (event) => {
     isDragging = true;
+    active_com = true;
     initialY = event.clientY - offsetY;
   });
 
@@ -209,8 +212,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let comment_top = commentSection.getBoundingClientRect().top;
     console.log(comment_top);
     if (comment_top < 500) {
+      active_com = true;
       commentSection.classList.add("expanded");
     } else {
+      active_com = false;
       commentSection.classList.remove("expanded");
     }
   }
