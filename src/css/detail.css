@@ -238,8 +238,11 @@ html{
     position: absolute;
     transition: left 0.5s ease, top 0.5s ease, width 0.5s ease, height 0.5s ease; /* 크기와 위치 변화를 위한 트랜지션 추가 */
     transition-duration: 0.4s, 0.4s;
-  }
-  
+}
+
+.card_hide{
+	visibility: hidden !important;
+}
 
 .card_main { 
   width: 989px;

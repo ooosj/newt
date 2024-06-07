@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardTempLeft = document.querySelector(".card_temp_left");
 
   // 초기 카드에 값 설정
-  cardTempLeft.innerText = dataIn();
-  cardLeft.innerText = dataIn();
+  cardTempLeft.classList.add("card_hide");
+  cardLeft.classList.add("card_hide");
   cardMain.innerText = dataIn();
   cardRight.innerText = dataIn();
   cardTempRight.innerText = dataIn();
@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let t = dataIn();
         return t;
       }
-      console.log(right_temp);
       let t = right_temp.pop();
       return t;
     }
@@ -129,6 +128,9 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardLeft.style.left = position["tempLeft"].left;
     newCardLeft.style.top = position["tempLeft"].top;
     newCardLeft.innerText = update();
+    if (newCardLeft.innerText === "") {
+      newCardLeft.classList.add("card_hide");
+    }
 
     document.body.getElementsByClassName("e2479_2")[0].appendChild(newCardLeft);
 
@@ -154,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("err");
         return 0;
       }
-
       let t = left_temp.pop();
       return t;
     }
