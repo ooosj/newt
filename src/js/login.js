@@ -1,6 +1,4 @@
-import { loginEmail, signupEmail } from './firebase.js';
-import { getAuth, updateProfile } from "firebase/auth";
-const auth = getAuth();
+import { getUserName, loginEmail, signupEmail } from './firebase.js';
 
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -25,8 +23,7 @@ signinForm.addEventListener('click', (e) => {
   loginEmail(email, password).then((result) => {
     console.log(result);
     const user = result.user;
-    // loginSuccess(user.email, user.uid);
-    alert('로그인 성공!');
+    alert(getUserName());
   }).catch((error) => {
     console.log(error);
     alert('로그인 실패!');
@@ -39,8 +36,8 @@ signupForm.addEventListener('click', (e) => {
   const name = document.getElementById('signup-name').value; // 이름 입력값 가져오기
   const email = document.getElementById('signup-email').value; // 이메일 입력값 가져오기
   const password = document.getElementById('signup-password').value; // 비밀번호 입력값 가져오기
-  signupEmail(email, password) //
-    .then((result) => {
+  signupEmail({name, email, password}) //
+    .then ((result) => {
       const user = result.user;
       alert('회원가입 성공!');
     })
@@ -50,11 +47,3 @@ signupForm.addEventListener('click', (e) => {
     });
 });
 
-
-
-// const loginSuccess = (email, uid) => {
-//   const login_area = document.getElementById('login-area');
-//   login_area.innerHTML = `<h2>Login 성공!</h2><div>uid: ${uid}</div><div>email: ${email}</div>`;
-
-
-// };

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,updateProfile } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,12 +19,19 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-//Email 로그인
-export const signupEmail = (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+//Email 회원가입
+export const signupEmail = async ( {name, email, password} ) => {
+  const createUser = await createUserWithEmailAndPassword(auth, email, password);
+  await updateProfile(auth.currentUser, { displayName: name });
+  return createUser;
 };
 
-//Email 회원가입
+//Email 로그인
 export const loginEmail = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password);
+  const signInUser = signInWithEmailAndPassword(auth, email, password);
+  return signInUser;
+};
+
+export const getUserName = () => {
+  return auth.currentUser.displayName;
 };
