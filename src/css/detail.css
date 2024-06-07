@@ -240,7 +240,7 @@ html{
     transition-duration: 0.4s, 0.4s;
 }
 
-.card_hide{
+.hide{
 	visibility: hidden !important;
 }
 

@@ -40,14 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardTempRight = document.querySelector(".card_temp_right");
   let cardTempLeft = document.querySelector(".card_temp_left");
 
+  let commentButton = document.querySelector(".comment_button");
+  let likeButton = document.querySelector(".like_button");
+
   // 초기 카드에 값 설정
-  cardTempLeft.classList.add("card_hide");
-  cardLeft.classList.add("card_hide");
+  cardTempLeft.classList.add("hide");
+  cardLeft.classList.add("hide");
   cardMain.innerText = dataIn();
   cardRight.innerText = dataIn();
   cardTempRight.innerText = dataIn();
 
   const shiftCards = () => {
+    commentButton.classList.add("hide");
+    likeButton.classList.add("hide");
     // Move cards to their new positions
     cardLeft.classList.replace("card_left", "card_temp_left");
     cardMain.classList.replace("card_main", "card_left");
@@ -89,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
         cardMain = cardRight;
         cardRight = cardTempRight;
         cardTempRight = newCardRight;
+
+        commentButton.classList.remove("hide");
+        likeButton.classList.remove("hide");
       },
       { once: true }
     );
@@ -104,6 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const backCards = () => {
+    commentButton.classList.add("hide");
+    likeButton.classList.add("hide");
     // Move cards to their new positions
     cardTempLeft.classList.replace("card_temp_left", "card_left");
     cardLeft.classList.replace("card_left", "card_main");
@@ -129,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardLeft.style.top = position["tempLeft"].top;
     newCardLeft.innerText = update();
     if (newCardLeft.innerText === "") {
-      newCardLeft.classList.add("card_hide");
+      newCardLeft.classList.add("hide");
     }
 
     document.body.getElementsByClassName("e2479_2")[0].appendChild(newCardLeft);
@@ -147,6 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
         cardMain = cardLeft;
         cardLeft = cardTempLeft;
         cardTempLeft = newCardLeft;
+
+        commentButton.classList.remove("hide");
+        likeButton.classList.remove("hide");
       },
       { once: true }
     );
