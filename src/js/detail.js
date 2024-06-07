@@ -22,7 +22,8 @@ const position = {
 };
 
 let active = false;
-
+let num = 0;
+let mm = [];
 document.addEventListener("DOMContentLoaded", () => {
   let cardMain = document.querySelector(".card_main");
   let cardLeft = document.querySelector(".card_left");
@@ -53,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardRight.classList.add("card_temp_right");
     newCardRight.style.left = position["tempRight"].left;
     newCardRight.style.top = position["tempRight"].top;
+    newCardRight.innerText = num;
+    update();
     document.body
       .getElementsByClassName("e2479_2")[0]
       .appendChild(newCardRight);
@@ -70,10 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       { once: true }
     );
+    function update() {
+      num = num + 1;
+      return num;
+    }
   };
 
   document.addEventListener("keydown", (event) => {
-    if (event.code === "KeyA" && !active) {
+    if (event.key === "ArrowRight" && !active) {
       active = true;
       shiftCards();
     }
@@ -82,8 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   let commentButton = document.querySelector(".comment_button");
   let commentSection = document.querySelector(".comment_section");
-  let cardMain = document.querySelector(".card_main");
-  let e2479_3 = document.querySelector(".e2479_3");
+  let backDiv = document.querySelector(".e2479_2");
 
   let isDragging = false;
   let initialY = 0;

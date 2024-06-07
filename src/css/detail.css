@@ -289,7 +289,7 @@ html{
 
 .expanded {
     top: 350px !important;/* card_main 아래로 배치 */
-    z-index: 2;
+    
     
 }
 
@@ -300,6 +300,7 @@ html{
     position: absolute; 
     top: 1050px;
     left: 465px;
+    z-index: 2;
     transition: left 0.5s ease, top 0.5s ease; /* 크기와 위치 변화를 위한 트랜지션 추가 */
 }
 
