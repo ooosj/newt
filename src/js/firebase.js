@@ -32,6 +32,7 @@ export const loginEmail = (email, password) => {
   return signInUser;
 };
 
+//user 이름 가져오기
 export const getUserName = () => {
   return auth.currentUser.displayName;
 };
