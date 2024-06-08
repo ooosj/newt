@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (userName !== null) {
         // If logged in, show username
         loginArea.innerHTML = `
-            <span style="margin-left:20px";>${userName}님</span>
+            <span style="margin-left:20px; font-size : 18px";>${userName}님</span>
             <button id="logoutButton" style="margin-left:20px";> 로그아웃 </button>
         `;
         console.log(1);
