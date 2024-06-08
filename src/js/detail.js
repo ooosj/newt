@@ -185,11 +185,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   let commentButton = document.querySelector(".comment_button");
   let commentSection = document.querySelector(".comment_section");
   let cardMain = document.querySelector(".card_main");
   let cardMainCircle = document.querySelector(".card_main_circle");
+  let commentList = document.querySelector(".comment_list");
 
   let isCardDragging = false;
   let cardInitialY = 0;
@@ -199,10 +201,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let initialY = 0;
   let offsetY = 0;
 
+  function extend() {
+    commentSection.classList.add("expanded");
+    loadComments(); // 댓글 로드 함수 호출
+    active_com = true;
+  }
+  function reduce() {
+    commentSection.classList.remove("expanded");
+    clearComments();
+    active_com = false;
+  }
+
   // 댓글 버튼 클릭 시 댓글 창이 나타나도록
   commentButton.addEventListener("click", () => {
-    active_com = true;
-    commentSection.classList.toggle("expanded");
+    extend();
   });
 
   cardMain.addEventListener("mousedown", (event) => {
@@ -254,7 +266,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   commentSection.addEventListener("dblclick", () => {
-    commentSection.classList.toggle("expanded");
+    console.log(active_com);
+    if (active_com) {
+      reduce();
+    } else {
+      extend();
+    }
   });
 
   // 댓글 창의 위치를 갱신하여 완전히 펼친 상태인지 확인
@@ -262,11 +279,38 @@ document.addEventListener("DOMContentLoaded", () => {
     let comment_top = commentSection.getBoundingClientRect().top;
     console.log(comment_top);
     if (comment_top < 500) {
-      active_com = true;
-      commentSection.classList.add("expanded");
+      extend();
     } else {
-      active_com = false;
-      commentSection.classList.remove("expanded");
+      reduce();
     }
+  }
+
+  function clearComments() {
+    commentList.innerHTML = "";
+  }
+
+  function loadComments() {
+    // 예시 댓글 데이터
+    let comments = [
+      "첫 번째 댓글입니다.",
+      "두 번째 댓글입니다.",
+      "세 번째 댓글입니다.",
+      "네 번째 댓글입니다.",
+      "다섯 번째 댓글입니다.",
+      "여섯 번째 댓글입니다.",
+      "일곱 번째 댓글입니다.",
+      "여덟 번째 댓글입니다.",
+      "아홉 번째 댓글입니다.",
+      "열 번째 댓글입니다.",
+    ];
+
+    commentList.innerHTML = ""; // 기존 댓글 초기화
+
+    comments.forEach((comment) => {
+      let commentItem = document.createElement("div");
+      commentItem.classList.add("comment_item");
+      commentItem.innerText = comment;
+      commentList.appendChild(commentItem);
+    });
   }
 });
