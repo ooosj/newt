@@ -192,6 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardMainCircle = document.querySelector(".card_main_circle");
   let commentSection = document.querySelector(".comment_section");
   let commentList = document.querySelector(".comment_list");
+  let commentInput = document.querySelector(".comment_input");
   let submitCommentButton = document.querySelector("#submit_comment");
 
   let isCardDragging = false;
@@ -202,16 +203,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let initialY = 0;
   let offsetY = 0;
 
+  loadComments(); // 댓글 로드 함수 호출
   function extend() {
     commentSection.classList.add("expanded");
-    loadComments(); // 댓글 로드 함수 호출
     active_com = true;
   }
   function reduce() {
     commentSection.classList.remove("expanded");
-    clearComments();
+    commentInput.classList.add("hide");
+    commentList.classList.add("hide");
     active_com = false;
   }
+
+  commentSection.addEventListener("transitionend", () => {
+    if (active_com) {
+      commentInput.classList.remove("hide");
+      commentList.classList.remove("hide");
+    }
+  });
 
   // 댓글 버튼 클릭 시 댓글 창이 나타나도록
   commentButton.addEventListener("click", () => {

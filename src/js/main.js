@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function () {
 
     const container = document.getElementById('container');
     let currentIndex = 0; // 현재 뉴스 인덱스
