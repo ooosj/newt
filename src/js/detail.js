@@ -1,23 +1,23 @@
 const position = {
   main: {
     left: "465px",
-    top: "228px",
+    top: "180px",
   },
   right: {
     left: "1581px",
-    top: "518px",
+    top: "470px",
   },
   left: {
     left: "-418px",
-    top: "518px",
+    top: "470px",
   },
   tempLeft: {
     left: "-1000px",
-    top: "518px",
+    top: "470px",
   },
   tempRight: {
     left: "2000px",
-    top: "518px",
+    top: "470px",
   },
 };
 
