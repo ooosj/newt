@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', function() {
     const loginArea = document.getElementById('login-area');
     const userName = window.sessionStorage.getItem('username');
     if (userName !== null) {
@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Fetch the title from data.json
-    const response = await fetch('data.json');
-    const data = await response.json();
-    const newsTitle = data.title;
+    // const response = await fetch('data.json');
+    // const data = await response.json();
+    // const newsTitle = data.title;
 
     // Create placeholder with the fetched title
     const container = document.getElementById('container');
