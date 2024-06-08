@@ -1,6 +1,4 @@
 html{
-    /* width: 1920px; */
-
 	user-select: none;
 }
 .e2479_2 { 
@@ -158,7 +156,7 @@ html{
 .expanded {
     top: 350px !important;/* card_main 아래로 배치 */
     border-radius: 0 !important; /* expanded 상태에서 모서리를 사각형으로 */
-    
+    height: 300px;
 }
 
 .comment_section {
