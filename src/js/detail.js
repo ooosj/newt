@@ -188,10 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   let commentButton = document.querySelector(".comment_button");
-  let commentSection = document.querySelector(".comment_section");
   let cardMain = document.querySelector(".card_main");
   let cardMainCircle = document.querySelector(".card_main_circle");
+  let commentSection = document.querySelector(".comment_section");
   let commentList = document.querySelector(".comment_list");
+  let submitCommentButton = document.querySelector("#submit_comment");
 
   let isCardDragging = false;
   let cardInitialY = 0;
@@ -292,44 +293,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadComments() {
     // 예시 댓글 데이터
     let comments = [
-      "첫 번째 댓글입니다.",
-      "두 번째 댓글입니다.",
-      "세 번째 댓글입니다.",
-      "네 번째 댓글입니다.",
-      "다섯 번째 댓글입니다.",
-      "여섯 번째 댓글입니다.",
-      "일곱 번째 댓글입니다.",
-      "여덟 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
-      "아홉 번째 댓글입니다.",
-      "열 번째 댓글입니다.",
+      { author: "작성자1", content: "첫 번째 댓글입니다." },
+      { author: "작성자2", content: "두 번째 댓글입니다." },
+      { author: "작성자3", content: "세 번째 댓글입니다." },
+      { author: "작성자4", content: "네 번째 댓글입니다." },
+      { author: "작성자5", content: "다섯 번째 댓글입니다." },
     ];
 
     commentList.innerHTML = ""; // 기존 댓글 초기화
@@ -337,8 +305,24 @@ document.addEventListener("DOMContentLoaded", () => {
     comments.forEach((comment) => {
       let commentItem = document.createElement("div");
       commentItem.classList.add("comment_item");
-      commentItem.innerText = comment;
+      commentItem.innerHTML = `<strong>${comment.author}</strong>: ${comment.content}`;
       commentList.appendChild(commentItem);
     });
   }
+
+  submitCommentButton.addEventListener("click", () => {
+    let author = document.querySelector("#author").value;
+    let comment = document.querySelector("#comment").value;
+
+    if (author && comment) {
+      let commentItem = document.createElement("div");
+      commentItem.classList.add("comment_item");
+      commentItem.innerHTML = `<strong>${author}</strong>: ${comment}`;
+      commentList.appendChild(commentItem);
+
+      // 입력 필드 초기화
+      document.querySelector("#author").value = "";
+      document.querySelector("#comment").value = "";
+    }
+  });
 });
