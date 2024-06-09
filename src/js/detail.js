@@ -20,6 +20,25 @@ const position = {
     top: "470px",
   },
 };
+/*
+fetch("test.json")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok " + response.statusText);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    // 데이터 확인
+    console.log(data);
+
+    // JSON 데이터를 변수에 저장
+    let article = data;
+  })
+  .catch((error) => {
+    console.log("에러에러");
+  });
+  */
 
 let active = false;
 let active_com = false;
