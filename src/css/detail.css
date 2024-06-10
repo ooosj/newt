@@ -276,7 +276,7 @@ html{
 }
 
 .style1.title {
-  font-size: 16px;
+  font-size: 35px;
     font-family: Arial, sans-serif;
     color: #333;
     text-transform: uppercase;
@@ -290,6 +290,7 @@ html{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .style2.pic {
@@ -299,8 +300,9 @@ html{
 }
 
 .style2.title {
-  font-size: 18px;
+  font-size: 31px;
     font-family: 'Times New Roman', Times, serif;
+    top: 78%;
     color: #555;
     font-style: italic;
     text-decoration: underline;
@@ -310,6 +312,7 @@ html{
 /* Style 3 - 이미지 위, 텍스트 아래 */
 .style3 {
   text-align: center;
+  position: relative;
 }
 
 .style3.pic {
@@ -318,9 +321,10 @@ html{
 }
 
 .style3.title {
-  font-size: 14px;
+  font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
     color: #666;
+    bottom:-82%;
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.8);
     display: inline-block;
@@ -331,6 +335,7 @@ html{
 /* Style 4 - 이미지 아래, 텍스트 위 */
 .style4 {
   text-align: center;
+  position: relative;
 }
 
 .style4.pic {
@@ -340,7 +345,7 @@ html{
 }
 
 .style4.title {
-  font-size: 20px;
+  font-size: 32px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #444;
     margin-bottom: 10px;
@@ -364,10 +369,11 @@ html{
 
 .title.style5 {
   position: absolute;
-    top: 50%;
+  width: 80%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
+    font-size: 32px;
     font-family: 'Georgia', serif;
     color: white;
     text-shadow: 2px 2px 4px #000000;
