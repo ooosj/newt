@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const loginArea = document.getElementById('login-area');
     const userName = window.sessionStorage.getItem('username');
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 skipEmptyLines: true
             }).data;
 
-
             console.log(parsedData);
 
             // 초기 뉴스 생성
@@ -62,10 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const titleElement = document.createElement('div');
             titleElement.classList.add('news-title');
-
             // 이 부분에서 제목을 출력합니다.
             titleElement.textContent = newsItems[newsIndex].title || `${newsIndex + 1}번째 뉴스`; // 뉴스 번호
-
 
             const placeholder = document.createElement('div');
             placeholder.classList.add('placeholder');
