@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0; // 현재 뉴스 인덱스
 
     // CSV 파일 경로 설정
-    const csvFilePath = '../data/NaverNews_경제.csv';
+    const csvFilePath = '../data/NaverNews_국제.csv';
 
     // CSV 파일 읽기
     fetch(csvFilePath)
