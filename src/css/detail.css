@@ -263,4 +263,115 @@ html{
   .comment_input button:hover {
     background-color: #0056b3;
   }
-  
+  /* Style 1 - 이미지 왼쪽, 텍스트 오른쪽 */
+.style1 {
+  display: flex;
+  align-items: center;
+}
+
+.style1.pic {
+  width: 100px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.style1.title {
+  font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #333;
+    padding-bottom: 2px;
+}
+
+/* Style 2 - 이미지 오른쪽, 텍스트 왼쪽 */
+.style2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.style2.pic {
+  width: 100px;
+  height: auto;
+  margin-left: 15px;
+}
+
+.style2.title {
+  font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #555;
+    font-style: italic;
+    text-decoration: underline;
+    margin-right: 15px;
+}
+
+/* Style 3 - 이미지 위, 텍스트 아래 */
+.style3 {
+  text-align: center;
+}
+
+.style3.pic {
+  width: 100%;
+  height: auto;
+}
+
+.style3.title {
+  font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #666;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: inline-block;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Style 4 - 이미지 아래, 텍스트 위 */
+.style4 {
+  text-align: center;
+}
+
+.style4.pic {
+  width: 100%;
+  height: auto;
+  order: 2;
+}
+
+.style4.title {
+  font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #444;
+    margin-bottom: 10px;
+    order: 1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+/* Style 5 - 이미지와 텍스트 겹치기 */
+.style5 {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.style5.pic {
+  width: 100%;
+  height: auto;
+  opacity: 0.8;
+}
+
+.title.style5 {
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-family: 'Georgia', serif;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
+}

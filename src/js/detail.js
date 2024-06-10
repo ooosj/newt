@@ -20,25 +20,7 @@ const position = {
     top: "470px",
   },
 };
-/*
-fetch("test.json")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok " + response.statusText);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    // 데이터 확인
-    console.log(data);
-
-    // JSON 데이터를 변수에 저장
-    let article = data;
-  })
-  .catch((error) => {
-    console.log("에러에러");
-  });
-  */
+let article;
 
 let active = false;
 let active_com = false;
@@ -48,8 +30,12 @@ let left_temp = [];
 let right_temp = [];
 
 function dataIn() {
-  num = num + 1;
-  return num;
+  if (!!article[num]) {
+    let temp_data = article[num].title;
+    num = num + 1;
+    return temp_data;
+  }
+  return null;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -65,9 +51,51 @@ document.addEventListener("DOMContentLoaded", () => {
   // 초기 카드에 값 설정
   cardTempLeft.classList.add("hide");
   cardLeft.classList.add("hide");
-  cardMain.innerText = dataIn();
-  cardRight.innerText = dataIn();
-  cardTempRight.innerText = dataIn();
+
+  fetch("../article/NaverNews.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // 데이터 확인
+      console.log(data.Sheet1);
+
+      // JSON 데이터를 변수에 저장
+      article = data.Sheet1;
+      const newTitle = document.createElement("div");
+      newTitle.innerText = update();
+      newTitle.classList.add("title");
+      switch (num % 5) {
+        case 0:
+          newTitle.classList.add("style1");
+          break;
+        case 1:
+          newTitle.classList.add("style2");
+          break;
+        case 2:
+          newTitle.classList.add("style3");
+          break;
+        case 3:
+          newTitle.classList.add("style4");
+          break;
+        case 4:
+          newTitle.classList.add("style5");
+          break;
+        default:
+          break;
+      }
+      newCardRight.appendChild(newTitle);
+
+      cardMain.innerText = dataIn();
+      cardRight.innerText = dataIn();
+      cardTempRight.innerText = dataIn();
+    })
+    .catch((error) => {
+      console.log("에러에러");
+    });
 
   const shiftCards = () => {
     commentButton.classList.add("hide");
@@ -95,7 +123,29 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardRight.classList.add("card_temp_right");
     newCardRight.style.left = position["tempRight"].left;
     newCardRight.style.top = position["tempRight"].top;
-    newCardRight.innerText = update();
+    const newTitle = document.createElement("div");
+    newTitle.innerText = update();
+    newTitle.classList.add("title");
+    switch (pivot % 5) {
+      case 0:
+        newTitle.classList.add("style1");
+        break;
+      case 1:
+        newTitle.classList.add("style2");
+        break;
+      case 2:
+        newTitle.classList.add("style3");
+        break;
+      case 3:
+        newTitle.classList.add("style4");
+        break;
+      case 4:
+        newTitle.classList.add("style5");
+        break;
+      default:
+        break;
+    }
+    newCardRight.appendChild(newTitle);
 
     document.body
       .getElementsByClassName("e2479_2")[0]
@@ -156,7 +206,30 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardLeft.classList.add("card_temp_left");
     newCardLeft.style.left = position["tempLeft"].left;
     newCardLeft.style.top = position["tempLeft"].top;
-    newCardLeft.innerText = update();
+    const newTitle = document.createElement("div");
+    newTitle.innerText = update();
+    newTitle.classList.add("title");
+    switch (pivot % 5) {
+      case 0:
+        newTitle.classList.add("style1");
+        break;
+      case 1:
+        newTitle.classList.add("style2");
+        break;
+      case 2:
+        newTitle.classList.add("style3");
+        break;
+      case 3:
+        newTitle.classList.add("style4");
+        break;
+      case 4:
+        newTitle.classList.add("style5");
+        break;
+      default:
+        break;
+    }
+    newCardLeft.appendChild(newTitle);
+
     if (newCardLeft.innerText === "") {
       newCardLeft.classList.add("hide");
     }
@@ -197,8 +270,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (active_com) return;
     if (event.key === "ArrowRight" && !active) {
       active = true;
+      pivot = pivot + 1;
       shiftCards();
     } else if (event.key === "ArrowLeft" && !active && left_temp.length !== 0) {
+      pivot = pivot - 1;
       active = true;
       backCards();
     }
