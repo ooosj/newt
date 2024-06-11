@@ -7,8 +7,6 @@ function shuffle(array) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
-  
   const container = document.getElementById("container");
   let currentIndex = 0; // 현재 뉴스 인덱스
 
@@ -79,13 +77,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // 클릭 이벤트 추가
       newsWrapper.addEventListener("click", function () {
-        window.location.href = `detail.html?news=${newsIndex + 1}`;
+        window.location.href = `detail.html?news=${
+          parseInt(newsItems[newsIndex].index) + 5000
+        }`;
       });
 
       container.appendChild(newsWrapper);
 
       currentIndex++;
-
     }
   }
 });
