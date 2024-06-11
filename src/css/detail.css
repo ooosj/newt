@@ -101,6 +101,7 @@ html{
     position: absolute;
     transition: left 0.5s ease, top 0.5s ease, width 0.5s ease, height 0.5s ease; /* 크기와 위치 변화를 위한 트랜지션 추가 */
     transition-duration: 0.4s, 0.4s;
+    overflow: hidden; /* 이미지가 카드 밖으로 나오지 않도록 함 */
 }
 
 .hide{
@@ -274,16 +275,18 @@ html{
   height: 500px;
   margin-right: 15px;
   object-fit: contain;
+  overflow: hidden; /* 이미지가 카드 밖으로 나오지 않도록 함 */
 }
 
 .style1.title {
-  font-size: 35px;
-    font-family: Arial, sans-serif;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-bottom: 2px solid #333;
-    padding-bottom: 2px;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  color: black;
+  font-weight: bold;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
 }
 
 /* Style 2 - 이미지 오른쪽, 텍스트 왼쪽 */
@@ -300,16 +303,18 @@ html{
   margin-left: 15px;
   object-fit: contain;
   top:15px;
+  overflow: hidden; /* 이미지가 카드 밖으로 나오지 않도록 함 */
 }
 
 .style2.title {
-  font-size: 31px;
+  font-size: 30px;
   font-family: Arial, sans-serif;
-    top: 3%;
-    color: #555;
-    font-style: italic;
-    text-decoration: underline;
-    margin-right: 15px;
+  color: black;
+  font-weight: bold;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
 }
 
 /* Style 3 - 이미지 위, 텍스트 아래 */
@@ -323,15 +328,16 @@ html{
   height: 500px;
   top: 20px;
   object-fit: contain;
+  overflow: hidden; /* 이미지가 카드 밖으로 나오지 않도록 함 */
 }
 
 .style3.title {
   font-size: 30px;
   font-family: Arial, sans-serif;
-    color: #666;
+  color: black;
+  font-weight: bold;
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.8);
-    display: inline-block;
     padding: 5px;
     border-radius: 5px;
 }
@@ -348,16 +354,18 @@ html{
   top:15px;
   order: 1;
   object-fit: contain;
+  overflow: hidden; /* 이미지가 카드 밖으로 나오지 않도록 함 */
 }
 
 .style4.title {
-  font-size: 32px;
+  font-size: 30px;
   font-family: Arial, sans-serif;
-    color: #444;
-    margin-bottom: 10px;
-    order: 2;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    letter-spacing: 1px;
+  color: black;
+  font-weight: bold;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
 }
 
 /* Style 5 - 이미지와 텍스트 겹치기 */
@@ -372,20 +380,16 @@ html{
   height: 578px;
   opacity: 0.8;
   object-fit: contain;
+  overflow: hidden; /* 이미지가 카드 밖으로 나오지 않도록 함 */
 }
 
 .title.style5 {
-  position: absolute;
-  z-index: 2;
-  width: 80%;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 32px;
-    font-family: Arial, sans-serif;
-    color: white;
-    text-shadow: 2px 2px 4px #000000;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 10px;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  color: black;
+  font-weight: bold;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
 }
