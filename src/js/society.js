@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log(parsedData);
 
+      shuffle(parsedData);
+
       // 초기 뉴스 생성
       createNewsPlaceholders(6, parsedData);
 
@@ -75,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // 클릭 이벤트 추가
       newsWrapper.addEventListener("click", function () {
         window.location.href = `detail.html?news=${
-          parseInt(newsItems[newsIndex].index) + 4000
+          parseInt(newsItems[newsIndex].index) - 1 + 4000
         }`;
       });
 

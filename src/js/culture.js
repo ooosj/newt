@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // 클릭 이벤트 추가
       newsWrapper.addEventListener("click", function () {
         window.location.href = `detail.html?news=${
-          parseInt(newsItems[newsIndex].index) + 5000
+          parseInt(newsItems[newsIndex].index) - 1 + 5000
         }`;
       });
 

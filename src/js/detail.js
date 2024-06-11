@@ -526,11 +526,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadComments() {
     // 예시 댓글 데이터
     let comments = [
-      { author: "작성자1", content: "첫 번째 댓글입니다." },
-      { author: "작성자2", content: "두 번째 댓글입니다." },
-      { author: "작성자3", content: "세 번째 댓글입니다." },
-      { author: "작성자4", content: "네 번째 댓글입니다." },
-      { author: "작성자5", content: "다섯 번째 댓글입니다." },
+      { author: "age129", content: "믿기지가 않네요" },
+      { author: "보잉기", content: "과잉은 언제나 화를 불러요.." },
+      { author: "하하", content: "너무 극단적인 내용이야" },
+      { author: "eqq12", content: "모순이 있는거 같은데요" },
+      { author: "zxa112", content: "방법이 있지 않을까요?" },
     ];
 
     commentList.innerHTML = ""; // 기존 댓글 초기화
