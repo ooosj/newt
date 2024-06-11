@@ -1,14 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const loginArea = document.getElementById('login-area');
-    const userName = window.sessionStorage.getItem('username');
-    
-    if (userName !== null) {
-        // If logged in, show username
-        loginArea.innerHTML = `
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // 무작위로 index 값 생성 (0 이상 i 미만)
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const loginArea = document.getElementById("login-area");
+  const userName = window.sessionStorage.getItem("username");
+
+  if (userName !== null) {
+    // If logged in, show username
+    loginArea.innerHTML = `
             <span style="margin-left:20px";>${userName}님</span>
             <button id="logoutButton" style="margin-left:20px";> 로그아웃 </button>
         `;
-
+    
         const logoutButton = document.getElementById('logoutButton');
         logoutButton.addEventListener('click', function() {
             alert('로그아웃 되었습니다.');
@@ -90,6 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
             container.appendChild(newsWrapper);
 
             currentIndex++;
-        }
     }
+  }
 });
