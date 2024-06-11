@@ -20,7 +20,7 @@ const position = {
     top: "470px",
   },
 };
-let article;
+let article = [];
 
 let active = false;
 let active_com = false;
@@ -28,12 +28,82 @@ let num = 0;
 let pivot = 1;
 let left_temp = [];
 let right_temp = [];
+let newsValue;
 
-function dataIn() {
-  if (!!article[num]) {
-    let temp_data = article[num].title;
-    num = num + 1;
-    return temp_data;
+function discreteGaussian(p, sigmaX, sigmaY, size) {
+  const gaussian = Array.from({ length: size }, () => Array(size).fill(0));
+  let sum = 0;
+
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      const exponent = -(
+        Math.pow(i - p, 2) / (2 * Math.pow(sigmaX, 2)) +
+        Math.pow(j - p, 2) / (2 * Math.pow(sigmaY, 2))
+      );
+      gaussian[i][j] = Math.exp(exponent);
+      sum += gaussian[i][j];
+    }
+  }
+
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      gaussian[i][j] /= sum;
+    }
+  }
+
+  return gaussian;
+}
+
+function randomCat(p) {
+  const sigma = 0.1; // Standard deviation
+  const size = 7; // 1 to 7
+
+  const gaussian = discreteGaussian(p - 1, sigma, sigma, size);
+
+  const flatGaussian = gaussian.flat();
+
+  const cumulativeDistribution = [];
+  flatGaussian.reduce((acc, value, index) => {
+    cumulativeDistribution[index] = acc + value;
+    return cumulativeDistribution[index];
+  }, 0);
+
+  const randomValue = Math.random();
+  for (let i = 0; i < cumulativeDistribution.length; i++) {
+    if (randomValue <= cumulativeDistribution[i]) {
+      return Math.floor(i / size) + 1;
+    }
+  }
+
+  return 1;
+}
+
+function rand(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const csvFilePath = [
+  "",
+  "../data/NaverNews_정치.csv",
+  "../data/NaverNews_경제.csv",
+  "../data/NaverNews_국제.csv",
+  "../data/NaverNews_사회.csv",
+  "../data/NaverNews_문화.csv",
+  "../data/NaverNews_연예.csv",
+  "../data/NaverNews_스포츠.csv",
+];
+
+function dataIn(valueN) {
+  if (isNaN(valueN)) return null;
+  if (!!valueN && !!article[Math.floor(valueN / 1000)][valueN % 1000]) {
+    return article[Math.floor(valueN / 1000)][valueN % 1000].title;
+  }
+  return null;
+}
+function picIn(valueN) {
+  if (isNaN(valueN)) return null;
+  if (!!valueN && !!article[Math.floor(valueN / 1000)][valueN % 1000]) {
+    return article[Math.floor(valueN / 1000)][valueN % 1000].image_url;
   }
   return null;
 }
@@ -61,6 +131,42 @@ function setStyle(ns) {
   }
   return newTitle;
 }
+function picStyle(ns) {
+  switch (ns % 5) {
+    case 0:
+      return "style1";
+    case 1:
+      return "style2";
+    case 2:
+      return "style3";
+    case 3:
+      return "style4";
+    case 4:
+      return "style5";
+    default:
+      return "style1";
+  }
+}
+
+function feect(frameN) {
+  if (frameN > 7) return;
+  if (!!article[frameN] == false)
+    fetch(csvFilePath[frameN])
+      .then((response) => response.text())
+      .then((data) => {
+        const parsedData = Papa.parse(data, {
+          header: true,
+          skipEmptyLines: true,
+        }).data;
+        article[frameN] = parsedData;
+        console.log("Load ", frameN);
+        console.log(article[frameN]);
+        feect(frameN + 1);
+      });
+  else {
+    feect(frameN + 1);
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   let cardMain = document.querySelector(".card_main");
@@ -76,37 +182,71 @@ document.addEventListener("DOMContentLoaded", () => {
   cardTempLeft.classList.add("hide");
   cardLeft.classList.add("hide");
 
-  fetch("../article/NaverNews.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok " + response.statusText);
-      }
-      return response.json();
-    })
+  // CSV 파일 경로 설정
+
+  // 현재 URL에서 쿼리 파라미터 가져오기
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // 'news' 파라미터 값 가져오기
+  newsValue = urlParams.get("news");
+
+  // 가져온 값을 콘솔에 출력 (또는 원하는 곳에 표시)
+  console.log("news 파라미터 값:", newsValue);
+
+  fetch(csvFilePath[Math.floor(newsValue / 1000)])
+    .then((response) => response.text())
     .then((data) => {
-      // 데이터 확인
-      console.log(data.Sheet1);
+      const parsedData = Papa.parse(data, {
+        header: true,
+        skipEmptyLines: true,
+      }).data;
+
+      //console.log(parsedData);
 
       // JSON 데이터를 변수에 저장
-      article = data.Sheet1;
-      let temp = setStyle(1);
+      article[Math.floor(newsValue / 1000)] = parsedData;
+
+      console.log(article[Math.floor(newsValue / 1000)]);
+      let temp = setStyle(newsValue);
       temp.classList.add("title");
-      temp.innerText = dataIn();
+      temp.innerText = dataIn(newsValue);
+      let imgElement = new Image();
+      imgElement.src = picIn(newsValue) || "";
+      imgElement.classList.add(picStyle(newsValue));
+      imgElement.classList.add("pic");
+      cardMain.appendChild(imgElement);
+      cardMain.setAttribute("data-value", newsValue);
       cardMain.appendChild(temp);
 
-      temp = setStyle(2);
+      let t = randomCat(Math.floor(newsValue / 1000));
+      t = t * 1000 + rand(1, article[t].length);
+      temp = setStyle(t);
       temp.classList.add("title");
-      temp.innerText = dataIn();
+      temp.innerText = dataIn(t);
+      imgElement = new Image();
+      imgElement.classList.add(picStyle(t));
+      imgElement.classList.add("pic");
+      imgElement.src = picIn(t) || "";
+      cardRight.appendChild(imgElement);
+      cardRight.setAttribute("data-value", t);
       cardRight.appendChild(temp);
 
-      temp = setStyle(3);
+      t = randomCat(Math.floor(newsValue / 1000));
+      t = t * 1000 + rand(1, article[t].length);
+      temp = setStyle(t);
       temp.classList.add("title");
-      temp.innerText = dataIn();
+      imgElement = new Image();
+      imgElement.classList.add(picStyle(t));
+      imgElement.classList.add("pic");
+      imgElement.src = picIn(t);
+      cardTempRight.appendChild(imgElement);
+      temp.innerText = dataIn(t);
+      cardTempRight.setAttribute("data-value", t);
       cardTempRight.appendChild(temp);
+
+      feect(1);
     })
-    .catch((error) => {
-      console.log("에러에러");
-    });
+    .catch((error) => console.error("Error fetching the CSV file:", error));
 
   const shiftCards = () => {
     commentButton.classList.add("hide");
@@ -135,10 +275,17 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardRight.style.left = position["tempRight"].left;
     newCardRight.style.top = position["tempRight"].top;
 
-    let newTitle = setStyle((pivot + 2) % 5);
+    let aValue = update();
+    let newTitle = setStyle(aValue);
     newTitle.classList.add("title");
-    newTitle.innerText = update();
+    newTitle.innerText = dataIn(aValue);
+    newCardRight.setAttribute("data-value", aValue);
     newCardRight.appendChild(newTitle);
+    let imgElement = new Image();
+    imgElement.src = picIn(aValue) || "";
+    imgElement.classList.add(picStyle(aValue));
+    imgElement.classList.add("pic");
+    newCardRight.appendChild(imgElement);
 
     document.body
       .getElementsByClassName("e2479_2")[0]
@@ -149,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "transitionend",
       () => {
         active = false;
-        left_temp.push(cardTempLeft.innerText);
+        left_temp.push(cardTempLeft.getAttribute("data-value"));
         cardTempLeft.remove();
         cardTempLeft = cardLeft;
         cardLeft = cardMain;
@@ -165,10 +312,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function update() {
       if (right_temp.length === 0) {
         // 비어있음
-        let t = dataIn();
+        let t = randomCat(Math.floor(newsValue / 1000));
+        t = t * 1000 + rand(1, article[t].length);
         return t;
       }
       let t = right_temp.pop();
+      console.log("pop ", t);
       return t;
     }
   };
@@ -200,10 +349,17 @@ document.addEventListener("DOMContentLoaded", () => {
     newCardLeft.style.left = position["tempLeft"].left;
     newCardLeft.style.top = position["tempLeft"].top;
 
-    let newTitle = setStyle((pivot + 3) % 5);
+    let aValue = update();
+    let newTitle = setStyle(aValue);
     newTitle.classList.add("title");
-    newTitle.innerText = update();
+    newTitle.innerText = dataIn(aValue);
+    newCardLeft.setAttribute("data-value", aValue);
     newCardLeft.appendChild(newTitle);
+    let imgElement = new Image();
+    imgElement.src = picIn(aValue) || "";
+    imgElement.classList.add(picStyle(aValue));
+    imgElement.classList.add("pic");
+    newCardLeft.appendChild(imgElement);
 
     if (newCardLeft.innerText === "") {
       newCardLeft.classList.add("hide");
@@ -217,7 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
         active = false;
         // 삭제 전 저장
-        right_temp.push(cardTempRight.innerText);
+        right_temp.push(cardTempRight.getAttribute("data-value"));
         cardTempRight.remove();
         cardTempRight = cardRight;
         cardRight = cardMain;
@@ -296,11 +452,6 @@ document.addEventListener("DOMContentLoaded", () => {
     extend();
   });
 
-  cardMain.addEventListener("mousedown", (event) => {
-    isCardDragging = true;
-    cardInitialY = event.clientY - cardOffsetY;
-  });
-
   // 댓글 창을 드래그하여 올리면 마우스를 따라 올라가도록
   commentSection.addEventListener("mousedown", (event) => {
     isDragging = true;
@@ -364,10 +515,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function clearComments() {
-    commentList.innerHTML = "";
-  }
-
   function loadComments() {
     // 예시 댓글 데이터
     let comments = [
@@ -404,3 +551,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {});
