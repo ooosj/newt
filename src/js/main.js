@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const newsWrapper = document.createElement("div");
       newsWrapper.classList.add("news-wrapper");
 
+
       const titleElement = document.createElement("div");
       titleElement.classList.add("news-title");
 
