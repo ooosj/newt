@@ -253,6 +253,37 @@ document.addEventListener("DOMContentLoaded", () => {
       cardTempRight.appendChild(temp);
 
       feect(1);
+
+      cardMain.addEventListener("click", () => {
+        var som = cardMain.getAttribute("data-value");
+        if (article[Math.floor(som / 1000)][som % 1000].link) {
+          // 링크 주소로 이동
+          window.open(
+            article[Math.floor(som / 1000)][som % 1000].link,
+            "_blank"
+          );
+        }
+      });
+      cardRight.addEventListener("click", () => {
+        var som = cardRight.getAttribute("data-value");
+        if (article[Math.floor(som / 1000)][som % 1000].link) {
+          // 링크 주소로 이동
+          window.open(
+            article[Math.floor(som / 1000)][som % 1000].link,
+            "_blank"
+          );
+        }
+      });
+      cardTempRight.addEventListener("click", () => {
+        var som = cardTempRight.getAttribute("data-value");
+        if (article[Math.floor(som / 1000)][som % 1000].link) {
+          // 링크 주소로 이동
+          window.open(
+            article[Math.floor(som / 1000)][som % 1000].link,
+            "_blank"
+          );
+        }
+      });
     })
     .catch((error) => console.error("Error fetching the CSV file:", error));
 
@@ -294,6 +325,14 @@ document.addEventListener("DOMContentLoaded", () => {
     imgElement.classList.add(picStyle(aValue));
     imgElement.classList.add("pic");
     newCardRight.appendChild(imgElement);
+
+    newCardRight.addEventListener("click", () => {
+      var som = aValue;
+      if (article[Math.floor(som / 1000)][som % 1000].link) {
+        // 링크 주소로 이동
+        window.open(article[Math.floor(som / 1000)][som % 1000].link, "_blank");
+      }
+    });
 
     document.body
       .getElementsByClassName("e2479_2")[0]
@@ -371,6 +410,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (newCardLeft.innerText === "") {
       newCardLeft.classList.add("hide");
+    }
+
+    if (!isNaN(aValue)) {
+      newCardLeft.addEventListener("click", () => {
+        var som = aValue;
+        if (article[Math.floor(som / 1000)][som % 1000].link) {
+          // 링크 주소로 이동
+          window.open(
+            article[Math.floor(som / 1000)][som % 1000].link,
+            "_blank"
+          );
+        }
+      });
     }
 
     document.body.getElementsByClassName("e2479_2")[0].appendChild(newCardLeft);
@@ -561,4 +613,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {});
-
