@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log(parsedData);
 
+      shuffle(parsedData);
+      
       // 초기 뉴스 생성
       createNewsPlaceholders(6, parsedData);
 
