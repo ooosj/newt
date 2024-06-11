@@ -304,7 +304,7 @@ html{
 
 .style2.title {
   font-size: 31px;
-    font-family: 'Times New Roman', Times, serif;
+  font-family: Arial, sans-serif;
     top: 3%;
     color: #555;
     font-style: italic;
@@ -327,7 +327,7 @@ html{
 
 .style3.title {
   font-size: 30px;
-    font-family: 'Courier New', Courier, monospace;
+  font-family: Arial, sans-serif;
     color: #666;
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -352,7 +352,7 @@ html{
 
 .style4.title {
   font-size: 32px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, sans-serif;
     color: #444;
     margin-bottom: 10px;
     order: 2;
@@ -382,7 +382,7 @@ html{
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 32px;
-    font-family: 'Georgia', serif;
+    font-family: Arial, sans-serif;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     background: rgba(0, 0, 0, 0.5);
