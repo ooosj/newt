@@ -29,6 +29,7 @@ let pivot = 1;
 let left_temp = [];
 let right_temp = [];
 let newsValue;
+let target = 1;
 
 function discreteGaussian(p, sigmaX, sigmaY, size) {
   const gaussian = Array.from({ length: size }, () => Array(size).fill(0));
@@ -55,7 +56,7 @@ function discreteGaussian(p, sigmaX, sigmaY, size) {
 }
 
 function randomCat(p) {
-  const sigma = 0.1; // Standard deviation
+  const sigma = 1; // Standard deviation
   const size = 7; // 1 to 7
 
   const gaussian = discreteGaussian(p - 1, sigma, sigma, size);
@@ -178,6 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let commentButton = document.querySelector(".comment_button");
   let likeButton = document.querySelector(".like_button");
 
+  likeButton.addEventListener("click", () => {
+    let atemp = cardMain.getAttribute("data-value");
+    target = Math.floor(atemp / 1000);
+    console.log(target);
+  });
   // 초기 카드에 값 설정
   cardTempLeft.classList.add("hide");
   cardLeft.classList.add("hide");
@@ -192,6 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 가져온 값을 콘솔에 출력 (또는 원하는 곳에 표시)
   console.log("news 파라미터 값:", newsValue);
+
+  target = Math.floor(newsValue / 1000);
 
   fetch(csvFilePath[Math.floor(newsValue / 1000)])
     .then((response) => response.text())
@@ -218,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardMain.setAttribute("data-value", newsValue);
       cardMain.appendChild(temp);
 
-      let t = randomCat(Math.floor(newsValue / 1000));
+      let t = target;
       t = t * 1000 + rand(1, article[t].length);
       temp = setStyle(t);
       temp.classList.add("title");
@@ -231,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardRight.setAttribute("data-value", t);
       cardRight.appendChild(temp);
 
-      t = randomCat(Math.floor(newsValue / 1000));
+      t = target;
       t = t * 1000 + rand(1, article[t].length);
       temp = setStyle(t);
       temp.classList.add("title");
@@ -312,7 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function update() {
       if (right_temp.length === 0) {
         // 비어있음
-        let t = randomCat(Math.floor(newsValue / 1000));
+        let t = randomCat(target);
         t = t * 1000 + rand(1, article[t].length);
         return t;
       }
