@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const titleElement = document.createElement('div');
             titleElement.classList.add('news-title');
             // 이 부분에서 제목을 출력합니다.
-            titleElement.textContent = newsItems[newsIndex].title || `${newsIndex + 1}번째 뉴스`; // 뉴스 번호
+            titleElement.textContent = newsItems[newsIndex].title; // 뉴스 번호
 
             const placeholder = document.createElement('div');
             placeholder.classList.add('placeholder');
